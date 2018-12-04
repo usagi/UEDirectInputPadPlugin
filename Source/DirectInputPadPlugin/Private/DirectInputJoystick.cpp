@@ -90,20 +90,24 @@ bool FDirectInputJoystick::Init(const DIDEVICEINSTANCE& joyins, FDirectInputDriv
 	memset(&joyBuf_[1],0,sizeof(DIJOYSTATE));
 
 	// 初期値を得る
-	int loopcount=0;
-	do{
-		FPlatformProcess::Sleep(0.2);
-		if(Input())
+	int fail_counter = 0;
+	do
+	{
+		if( Input() )
 		{
-			InitialJoyBuf_ = joyBuf_[nCurIndex_];
-			if(++loopcount>10) break;
+			InitialJoyBuf_ = joyBuf_[ nCurIndex_ ];
+			FPlatformProcess::Sleep( 1.0 / 60.0 );
+			if( Input() )
+			{
+				InitialJoyBuf_ = joyBuf_[ nCurIndex_ ];
+				break;
+			}
 		}
-		if(loopcount>100)
-		{
-			UE_LOG(LogDirectInputPadPlugin, Log, TEXT("DirectInput Joystick Create Fail. : %s"), joyins.tszProductName);
+		else if ( ++fail_counter >= 10 )
 			return false;
-		}
-	}while(true);
+		else
+			FPlatformProcess::Sleep( 1.0 / 60.0 );
+	} while ( true );
 
 	//	const string sFlag = (flags&DISCL_BACKGROUND)>0 ? "BACKGROUND" : "FOREGROUND";
 	UE_LOG(LogDirectInputPadPlugin, Log, TEXT("DirectInput Joystick Create Success. : %s"), joyins.tszProductName);
