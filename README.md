@@ -1,6 +1,6 @@
 # ご注意
 
-このリポジトリーは [katze_7514](http://twitter.com/katze_7514) さんの [katze7514/UEDirectInputPadPlugin](https://github.com/katze7514/UEDirectInputPadPlugin) を [Usagi Ito]() が [usagi/](https://github.com/usagi/UEDirectInputPadPlugin) へ Fork してちょこっといじったりしている何かです。
+このリポジトリーは [katze_7514](http://twitter.com/katze_7514) さんの [katze7514/UEDirectInputPadPlugin](https://github.com/katze7514/UEDirectInputPadPlugin) を [Usagi Ito]() が [usagi/UEDirectInputPadPlugin](https://github.com/usagi/UEDirectInputPadPlugin) へ Fork してちょこっといじったりしている何かです。
 
 - Fork 元の状態の README は [README.original.md](README.original.md) を参照して下さい。
 
